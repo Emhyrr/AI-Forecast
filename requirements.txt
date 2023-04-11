@@ -1,3 +1,2 @@
 pycaret==3.0.0
 streamlit
-heroku stack:set heroku-20
