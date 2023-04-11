@@ -54,7 +54,7 @@ def main():
                                                   value=1012.2, step=0.1)
         PRESSURE_QFE_MB_DERIVED = st.number_input('PRESSURE_QFE_MB_DERIVED', min_value=1000.9, max_value=1015.0,
                                                   value=1012.9, step=0.1)
-        output = ("")
+        output = ""
         input_dict = {'CLOUD_LOW_TYPE_CL': CLOUD_LOW_TYPE_CL, 'CLOUD_BASE_M_H': CLOUD_BASE_M_H,
                       'CLOUD_LOW_MED_AMT_OKTAS': CLOUD_LOW_MED_AMT_OKTAS, 'CLOUD_COVER_OKTAS_M': CLOUD_COVER_OKTAS_M,
                       'LAND_COND': LAND_COND, 'PAST_WEATHER_W1': PAST_WEATHER_W1, 'PAST_WEATHER_W2': PAST_WEATHER_W2,
@@ -95,7 +95,7 @@ def main():
                                                   value=1012.2, step=0.1)
         PRESSURE_QFE_MB_DERIVED = st.number_input('PRESSURE_QFE_MB_DERIVED', min_value=1000.9, max_value=1015.0,
                                                   value=1012.9, step=0.1)
-        output = ("")
+        output = ""
         input_dict = {'CLOUD_LOW_TYPE_CL': CLOUD_LOW_TYPE_CL, 'CLOUD_BASE_M_H': CLOUD_BASE_M_H,
                       'CLOUD_LOW_MED_AMT_OKTAS': CLOUD_LOW_MED_AMT_OKTAS, 'CLOUD_COVER_OKTAS_M': CLOUD_COVER_OKTAS_M,
                       'LAND_COND': LAND_COND, 'PAST_WEATHER_W1': PAST_WEATHER_W1, 'PAST_WEATHER_W2': PAST_WEATHER_W2,
