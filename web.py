@@ -70,7 +70,7 @@ def main():
             output = predict(model=model_1H, input_df=input_df)
             output =str(output)
 
-        st.success('Dipredikdi akan {}'.format(output))
+        st.success('Diprediksi akan {}'.format(output))
     if add_selectbox == '24 Hour Rainfall':
         CLOUD_LOW_TYPE_CL = st.selectbox('CLOUD_LOW_TYPE_CL', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], index=9)
         CLOUD_BASE_M_H = st.number_input('CLOUD_BASE_M_H', min_value=300,max_value=750, value=540, step=10)
@@ -111,7 +111,7 @@ def main():
             output = predict(model=model_24H, input_df=input_df)
             output =str(output)
 
-        st.success('Dipredikdi akan {}'.format(output))
+        st.success('Diprediksi akan {}'.format(output))
 
 if __name__ == '__main__':
     main()
