@@ -6,11 +6,15 @@ model_1H = load_model('Stacking')
 model_24H = load_model('Stack24')
 
 def predict(model, input_df):
-    prediction_df = predict_model(estimator=model, data=input_df)
-    rain_map = {1: 'Tidak Hujan', 2: 'Hujan Ringan', 3: 'Hujan Sedang', 4: 'Hujan Lebat'}
+    prediction_df = predict_model(estimator=model, data=input_df, raw_score=True)
+    rain_map = {1: 'No Rain', 2: 'Light Rain', 3: 'Moderate Rain', 4: 'Heavy Rain'}
     prediction_df['prediction_label'] = prediction_df['prediction_label'].map(rain_map)
-    predictions = prediction_df['prediction_label'][0]
-    return predictions
+    predicted_label = prediction_df['prediction_label'][0]
+    
+    # Extract the class probabilities
+    class_probabilities = [prediction_df[f'prediction_score_{i}'][0] for i in range(1, 5)]
+    
+    return predicted_label, class_probabilities
 
 def main():
     from PIL import Image
@@ -67,10 +71,15 @@ def main():
         input_df = pd.DataFrame([input_dict])
 
         if st.button("Predict"):
-            output = predict(model=model_1H, input_df=input_df)
-            output =str(output)
+            predicted_label, class_probabilities = predict(model=model_1H, input_df=input_df)
+            rain_map = {1: 'No Rain', 2: 'Light Rain', 3: 'Moderate Rain', 4: 'Heavy Rain'}
+            st.success(f"Predicted Rainfall: {predicted_label}")
+            
+            # Display class probabilities
+            st.write("Class Probabilities:")
+            for i, prob in enumerate(class_probabilities):
+                st.write(f"Class {i + 1} ({rain_map[i + 1]}): {prob:.4f}")
 
-        st.success('Diprediksi akan {}'.format(output))
     if add_selectbox == '24 Hour Rainfall':
         CLOUD_LOW_TYPE_CL = st.selectbox('CLOUD_LOW_TYPE_CL', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], index=9)
         CLOUD_BASE_M_H = st.number_input('CLOUD_BASE_M_H', min_value=300,max_value=750, value=540, step=10)
@@ -108,10 +117,14 @@ def main():
         input_df = pd.DataFrame([input_dict])
 
         if st.button("Predict"):
-            output = predict(model=model_24H, input_df=input_df)
-            output =str(output)
-
-        st.success('Diprediksi akan {}'.format(output))
+            predicted_label, class_probabilities = predict(model=model_24H, input_df=input_df)
+            rain_map = {1: 'No Rain', 2: 'Light Rain', 3: 'Moderate Rain', 4: 'Heavy Rain'}
+            st.success(f"Predicted Rainfall: {predicted_label}")
+            
+            # Display class probabilities
+            st.write("Class Probabilities:")
+            for i, prob in enumerate(class_probabilities):
+                st.write(f"Class {i + 1} ({rain_map[i + 1]}): {prob:.4f}")
 
 if __name__ == '__main__':
     main()
