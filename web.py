@@ -78,7 +78,7 @@ def main():
             # Display class probabilities
             st.write("Class Probabilities:")
             for i, prob in enumerate(class_probabilities):
-                st.write("{rain_map[i + 1]}: {prob:.4f}")
+                st.write(f"{rain_map[i + 1]}: {prob:.4f}")
 
     if add_selectbox == '24 Hour Rainfall':
         CLOUD_LOW_TYPE_CL = st.selectbox('CLOUD_LOW_TYPE_CL', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], index=9)
@@ -124,7 +124,7 @@ def main():
             # Display class probabilities
             st.write("Class Probabilities:")
             for i, prob in enumerate(class_probabilities):
-                st.write("{rain_map[i + 1]}: {prob:.4f}")
+                st.write(f"{rain_map[i + 1]}: {prob:.4f}")
 
 if __name__ == '__main__':
     main()
